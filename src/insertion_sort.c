@@ -11,26 +11,32 @@ void sort(linked_list *llPtr)
 
     node_t* cur = llPtr->head; //Variable to keep track of current node
     node_t** prevPtr = &(llPtr->head); //Variable to save the pointer that points to the current node.
+    node_t* where = llPtr->head; //Variable to keep track of where a node needs to be moved
+    node_t* move = llPtr->head; //Pointer to the slot that needs to be moved
+    
+    while(cur->next != NULL){ // While we're not at the end of the list
+        if(cur->next->data < cur->data){ //If next data is less than current, we need to move the next node.
+            where = llPtr->head; //Start looking for new position at the beginning
+            prevPtr = &(llPtr->head); //prevPtr keeps along with where
+            move = cur->next; //The node we need to move, is the next in line
 
-    while(cur->next != NULL){ //Run until the end
-        if(cur->data > cur->next->data){ //If the next number is smaller than the current, swap the two
-            *prevPtr = swap(cur, cur->next); //swap, and reassign the pointer to the current node, to the new node in "current"'s position
-        }
-        else{
-            cur = cur->next; //If the numbers were fine in order, move on.
-        }
-        prevPtr = &((*prevPtr)->next); //Progress the double pointer variable as well.
-
-        if(cur->next == NULL){ //If at the end of the list, check wether they are sorted.
-            cur = llPtr->head; //Check from the beginning
-            prevPtr = &(llPtr->head);
-            while(cur->next != NULL){
-                if(cur->data > cur->next->data){ //If it's NOT sorted, try run outer loop again, from this position.
-                    break;
+            while(where->next != NULL){ //Progress through the list again, searching for where to place the move node
+                if(where->data > move->data){
+                    break; //If current "where" data is larger than what we're moving, this is the place
                 }
-                cur = cur->next; //Otherwise, move on
+                where = where->next; //If not, then progress
                 prevPtr = &((*prevPtr)->next);
             }
+            cur->next = cur->next->next; //Update cur to point past its next node (because we're moving this next node)
+            *prevPtr = move; //The pointer that pointed to *where before, now points to the moved node
+            move->next = where; //Moved node points to the "where" position.
+        }
+        else{ //If next node is larger than current, move along
+            cur = cur->next;
+            prevPtr = &((*prevPtr)->next);
         }
     }
+    
+    
+    
 }
