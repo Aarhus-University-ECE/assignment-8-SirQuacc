@@ -3,4 +3,8 @@ Link to github: https://github.com/Aarhus-University-ECE/assignment-8-SirQuacc
 Task 1 answers:
 
 a)
-Th
+Only counting arithmetic operations (+, -, * and /), it would be 10 operations
+b)
+It would generally be a function of n, written as g(n)=(2*n)
+
+

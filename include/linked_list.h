@@ -18,8 +18,8 @@ typedef struct
 node_t *createNode(int value);
 linked_list *createLinkedList();
 void insertFront(node_t *nodePtr, linked_list *llPtr);
-node_t *swap(node_t *x, node_t *y);
-bool isempty();
+node_t *swap(node_t *x, node_t *y); 
+bool isempty(linked_list *llPtr); //Guess it isn't needed, but this was declared incorrectly
 void printLL(linked_list *llPtr);
 
 #endif // __LINKED_LIST_H_
