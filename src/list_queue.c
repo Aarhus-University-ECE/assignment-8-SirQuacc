@@ -37,6 +37,7 @@ int dequeue(queue *q)
   while(cur->next->next != NULL){
     cur = cur->next; //Go to the second-to-last node in queue
   }
+  free(q->front);
   q->front = cur; //Make the first-in-line node what was second in line before.
   q->front->next = NULL; //Make sure the new front points to nothing as next
   (q->size)--;
