@@ -7,13 +7,13 @@
 void sort(linked_list *llPtr)
 {
  // Add your sort function here
-    assert(!isempty(llPtr));
+    assert(!isempty(llPtr));  // Can't sort an empty list
 
     node_t* cur = llPtr->head; //Variable to keep track of current node
-    node_t** prevPtr = &(llPtr->head); //Variable to save the pointer that points to the current node.
     node_t* where = llPtr->head; //Variable to keep track of where a node needs to be moved
     node_t* move = llPtr->head; //Pointer to the slot that needs to be moved
-    
+    node_t** prevPtr = &(llPtr->head); //Variable to save the pointer that points to the observed node.
+
     while(cur->next != NULL){ // While we're not at the end of the list
         if(cur->next->data < cur->data){ //If next data is less than current, we need to move the next node.
             where = llPtr->head; //Start looking for new position at the beginning
@@ -33,7 +33,6 @@ void sort(linked_list *llPtr)
         }
         else{ //If next node is larger than current, move along
             cur = cur->next;
-            prevPtr = &((*prevPtr)->next);
         }
     }
     
